@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Scoutsy</title>
+  <meta name="description" content="Scoutsy Privacy Policy. Learn how we collect, use, and protect your information.">
+  <meta name="theme-color" content="#EEDCC5">
+  <link rel="icon" type="image/png" href="./assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --oatmeal: #EEDCC5;
+      --oatmeal-dark: #E2CDAF;
+      --plum: #3D1F3D;
+      --persimmon: #FF5C34;
+      --cta-persimmon: #D94820;
+      --jade: #4C8C6E;
+      --cool-blue: #6AAFCC;
+      --surface: #F0EDE8;
+      --white: #FFFFFF;
+      --text-muted: #6B5A5A;
+      --warm-border: #D9C9B3;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --max-width: 1140px;
+      --shadow-card: 0 4px 24px rgba(61, 31, 61, 0.07);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--oatmeal);
+      color: var(--plum);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(238, 220, 197, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 10px; }
+    .nav-logo span {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--plum);
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--plum);
+      font-weight: 500;
+      font-size: 0.95rem;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--plum);
+      border-radius: 2px;
+    }
+
+    /* ── Legal content ── */
+    .legal-header {
+      background: linear-gradient(180deg, var(--oatmeal) 0%, var(--oatmeal-dark) 100%);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+    .legal-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+    }
+    .legal-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .legal-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .legal-body h2 {
+      font-size: 1.5rem;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--warm-border);
+    }
+    .legal-body h3 {
+      font-size: 1.15rem;
+      margin-top: 28px;
+      margin-bottom: 10px;
+      color: var(--plum);
+    }
+    .legal-body p {
+      margin-bottom: 14px;
+      line-height: 1.75;
+      color: #4A3040;
+    }
+    .legal-body ul, .legal-body ol {
+      margin-bottom: 14px;
+      padding-left: 24px;
+    }
+    .legal-body li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+      color: #4A3040;
+    }
+    .legal-body strong { color: var(--plum); }
+    .legal-body a {
+      color: var(--cta-persimmon);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .legal-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    .legal-body th {
+      background: var(--surface);
+      text-align: left;
+      padding: 12px 14px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border-bottom: 2px solid var(--warm-border);
+    }
+    .legal-body td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--warm-border);
+      color: #4A3040;
+    }
+    .legal-body hr {
+      border: none;
+      border-top: 1px solid var(--warm-border);
+      margin: 36px 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--plum);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 24px;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-brand img { width: 28px; height: 28px; border-radius: 8px; }
+    .footer-brand span {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--oatmeal);
+        padding: 16px 24px 24px;
+        border-bottom: 1px solid var(--warm-border);
+        gap: 16px;
+      }
+      .hamburger { display: flex; }
+      .legal-header { padding: 40px 20px 32px; }
+      .legal-body { padding: 32px 20px 60px; }
+      .legal-body table { font-size: 0.8rem; }
+      .legal-body th, .legal-body td { padding: 8px 10px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="./" class="nav-logo">
+      <img src="./assets/icon.png" alt="Scoutsy icon">
+      <span>SCOUTSY</span>
+    </a>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="./#features">Features</a></li>
+      <li><a href="./#pricing">Pricing</a></li>
+      <li><a href="./privacy.html">Privacy</a></li>
+      <li><a href="./terms.html">Terms</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Header ── -->
+<div class="legal-header">
+  <h1>Privacy Policy</h1>
+  <p>Effective March 2026 &middot; Last updated March 15, 2026</p>
+</div>
+
+<!-- ── Content ── -->
+<div class="legal-body">
+
+  <p>MSCLTHRU Unlimited ("MSCLTHRU," "we," "us," or "our") operates the Scoutsy mobile application ("Scoutsy," the "App") and the website located at getscoutsy.com (the "Website"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the App and the Website (collectively, the "Service").</p>
+
+  <p>By accessing or using the Service, you agree to this Privacy Policy. If you do not agree with the terms of this Privacy Policy, please do not access or use the Service.</p>
+
+  <hr>
+
+  <h2>1. Information We Collect</h2>
+
+  <p>We collect information in several ways: directly from you, automatically when you use the Service, and from third-party services you connect to your account.</p>
+
+  <h3>1.1 Information You Provide Directly</h3>
+
+  <ul>
+    <li><strong>Account Information.</strong> When you create an account, we collect your name, email address, and profile photo. You may register using email and password, Apple Sign-In, or Google Sign-In.</li>
+    <li><strong>Profile Information.</strong> You may provide additional information to your profile, including a display name, bio, and profile picture.</li>
+    <li><strong>Listing Content.</strong> When you create product listings, we collect the photos you take or upload, product descriptions, pricing information, condition details, sizing, and category selections.</li>
+    <li><strong>ThriftWish Content.</strong> When you create a Wish (a request for a specific item), we collect your wish title, inspiration photos, budget range, category, brand, size, color, condition preferences, search radius, and urgency level.</li>
+    <li><strong>Payment Information.</strong> When you set up payouts or make purchases through ThriftWish, payment processing is handled by Stripe Connect. We do not store your full credit card number, debit card number, or bank account number on our servers. Stripe collects and processes this information directly in accordance with Stripe's Privacy Policy.</li>
+    <li><strong>Shipping Information.</strong> When you ship items through the Service, we collect shipping addresses, package dimensions, and weight information. Shipping labels are generated through Shippo.</li>
+    <li><strong>Chat Messages.</strong> When you communicate with other users through the in-app messaging system, your messages are processed and stored by Stream Chat. We may access message content for safety moderation purposes, including automated filtering of personal contact information and off-platform payment solicitations.</li>
+    <li><strong>Support Communications.</strong> If you contact us for customer support, we collect the information you provide in your correspondence, including your name, email address, and the content of your messages.</li>
+  </ul>
+
+  <h3>1.2 Information Collected Automatically</h3>
+
+  <ul>
+    <li><strong>Device Information.</strong> We collect information about the device you use to access the Service, including device model, operating system and version, unique device identifiers, and mobile network information.</li>
+    <li><strong>Photo Provenance Data.</strong> When you take photos within the App, we record the timestamp and device identifier associated with each photo. This information is used to establish proof of original creation for DMCA compliance and fraud prevention.</li>
+    <li><strong>Usage Data.</strong> We collect information about how you interact with the Service, including the features you use, the actions you take, the time and duration of your activities, and diagnostic data.</li>
+    <li><strong>Log Data.</strong> Our servers automatically record information when you access the Service, including your IP address, browser type, referring/exit pages, and timestamps.</li>
+  </ul>
+
+  <h3>1.3 Information Collected With Your Permission</h3>
+
+  <ul>
+    <li><strong>Location Data.</strong> With your explicit permission, we collect your device's geographic location. Location data is used to show you nearby ThriftWish wishes, suggest safe meetup locations, and calculate distances for local transactions. You may revoke location permissions at any time through your device settings. The Service will continue to function with reduced functionality if location access is denied.</li>
+    <li><strong>Camera Access.</strong> With your permission, we access your device camera to allow you to take product photos for listings and Scout Mode scans. Camera access is required for core listing functionality.</li>
+    <li><strong>Photo Library Access.</strong> With your permission, we access your device's photo library to allow you to upload inspiration photos for ThriftWish wishes and supplementary listing photos.</li>
+    <li><strong>Push Notifications.</strong> With your permission, we send push notifications for new messages, order updates, ThriftWish match alerts, and other Service-related communications. You may disable push notifications at any time through your device settings.</li>
+  </ul>
+
+  <h3>1.4 Information From Third-Party Platform Connections</h3>
+
+  <p>When you connect external selling platforms to your Scoutsy account for cross-listing purposes, we collect and store OAuth authentication tokens for those platforms. The platforms you may connect include:</p>
+
+  <ul>
+    <li><strong>Auto-Post Platforms (API integration):</strong> eBay, Etsy, TikTok Shop, Shopify, BigCommerce, WooCommerce, and Whatnot.</li>
+    <li><strong>Assisted Platforms (copy-paste workflow):</strong> Poshmark, Mercari, Depop, Facebook Marketplace, and OfferUp.</li>
+  </ul>
+
+  <p>For Auto-Post platforms, we store encrypted OAuth tokens in our database to post listings on your behalf. We do not store your login credentials (username and password) for any connected platform. You may disconnect any platform at any time through the App settings, which will revoke our access and delete the stored tokens.</p>
+
+  <hr>
+
+  <h2>2. How We Use Your Information</h2>
+
+  <p>We use the information we collect for the following purposes:</p>
+
+  <h3>2.1 Providing and Maintaining the Service</h3>
+  <ul>
+    <li>Creating and managing your account.</li>
+    <li>Generating and cross-posting product listings to connected platforms.</li>
+    <li>Facilitating ThriftWish transactions between buyers and sellers.</li>
+    <li>Processing payments and managing escrow through Stripe Connect.</li>
+    <li>Generating shipping labels through Shippo.</li>
+    <li>Enabling in-app messaging between buyers and sellers.</li>
+    <li>Managing your subscription through RevenueCat.</li>
+  </ul>
+
+  <h3>2.2 AI-Powered Features</h3>
+  <ul>
+    <li><strong>Listing Generation.</strong> Product photos you take in the App are sent to Google Gemini AI to automatically generate listing titles, descriptions, and category suggestions.</li>
+    <li><strong>Background Removal.</strong> Product photos may be processed by Google Gemini AI to remove backgrounds for cleaner listing images.</li>
+    <li><strong>Price Estimation.</strong> Product photos and identifying information are processed by Google Gemini AI and eBay's completed listings data to provide resale price estimates.</li>
+    <li><strong>Scout Mode.</strong> Photos taken in Scout Mode are analyzed by Google Vision API and Google Gemini AI to identify items, estimate resale value, and match against open ThriftWish wishes.</li>
+    <li><strong>Photo Similarity Matching.</strong> When a hunter proposes a ThriftWish match, AI compares the hunter's photos against the buyer's inspiration photos to generate a similarity score.</li>
+  </ul>
+  <p>We process your photos through AI services solely to provide the features described above. We do not use your photos to train AI models. Please refer to Google's Privacy Policy for information about how Google processes data sent to its AI services.</p>
+
+  <h3>2.3 Safety and Moderation</h3>
+  <ul>
+    <li>Automated filtering of chat messages to prevent sharing of personal contact information, off-platform payment links, and external marketplace links.</li>
+    <li>Photo provenance recording (timestamp and device ID) for DMCA compliance and fraud prevention.</li>
+    <li>Monitoring for counterfeit items and prohibited goods.</li>
+    <li>Enforcing our Terms of Service and Prohibited Items Policy.</li>
+  </ul>
+
+  <h3>2.4 Communication</h3>
+  <ul>
+    <li>Sending transactional notifications (order updates, shipping confirmations, payment receipts, dispute notifications).</li>
+    <li>Sending Service-related announcements and updates.</li>
+    <li>Responding to your customer support inquiries.</li>
+  </ul>
+
+  <h3>2.5 Improvement and Analytics</h3>
+  <ul>
+    <li>Understanding how users interact with the Service to improve functionality and user experience.</li>
+    <li>Diagnosing technical issues and bugs.</li>
+    <li>Analyzing aggregate usage trends.</li>
+  </ul>
+
+  <hr>
+
+  <h2>3. How We Share Your Information</h2>
+
+  <p>We do not sell your personal information. We share your information only in the following circumstances:</p>
+
+  <h3>3.1 With Other Users</h3>
+  <ul>
+    <li><strong>Sellers:</strong> When you purchase an item or submit a ThriftWish match, the seller or hunter will see your display name, profile photo, and general location (city-level, not exact address). If a transaction proceeds to shipping, the seller will receive your shipping address.</li>
+    <li><strong>Buyers:</strong> When you list an item or propose a ThriftWish match, buyers will see your display name, profile photo, listing content, and general location.</li>
+  </ul>
+
+  <h3>3.2 With Third-Party Service Providers</h3>
+
+  <p>We share information with the following third-party services that help us operate the Service:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Service Provider</th>
+        <th>Purpose</th>
+        <th>Data Shared</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Supabase</strong></td><td>Database hosting, authentication, file storage</td><td>Account info, listing data, photos, auth credentials</td></tr>
+      <tr><td><strong>Stripe Connect</strong></td><td>Payment processing, escrow, payouts</td><td>Name, email, payment info, transactions, identity verification</td></tr>
+      <tr><td><strong>RevenueCat</strong></td><td>Subscription management</td><td>User ID, subscription status, purchase history</td></tr>
+      <tr><td><strong>Stream Chat</strong></td><td>In-app messaging</td><td>User ID, display name, chat messages</td></tr>
+      <tr><td><strong>Google Gemini AI</strong></td><td>Listing generation, BG removal, pricing</td><td>Product photos, listing metadata</td></tr>
+      <tr><td><strong>Google Vision API</strong></td><td>Image analysis for Scout Mode</td><td>Product photos</td></tr>
+      <tr><td><strong>Shippo</strong></td><td>Shipping labels, carrier rates, tracking</td><td>Addresses, dimensions, weight</td></tr>
+      <tr><td><strong>eBay API</strong></td><td>Price estimation, cross-posting</td><td>Product identifiers, listing content</td></tr>
+      <tr><td><strong>Etsy, TikTok Shop, Shopify, BigCommerce, WooCommerce, Whatnot APIs</strong></td><td>Cross-posting listings</td><td>Listing content, product photos</td></tr>
+      <tr><td><strong>Apple / Google Sign-In</strong></td><td>Authentication</td><td>Auth token, email, name</td></tr>
+    </tbody>
+  </table>
+
+  <p>Each of these service providers processes your data in accordance with their own privacy policies. We encourage you to review the privacy policies of any third-party services you interact with through the App.</p>
+
+  <h3>3.3 For Legal Purposes</h3>
+  <p>We may disclose your information if required to do so by law or in response to valid requests by public authorities (for example, a court order or government agency request). We may also disclose your information when we believe in good faith that disclosure is necessary to:</p>
+  <ul>
+    <li>Comply with a legal obligation.</li>
+    <li>Protect and defend our rights or property.</li>
+    <li>Prevent or investigate possible wrongdoing in connection with the Service.</li>
+    <li>Protect the personal safety of users of the Service or the public.</li>
+    <li>Protect against legal liability.</li>
+  </ul>
+
+  <h3>3.4 DMCA and Intellectual Property Matters</h3>
+  <p>If we receive a valid DMCA takedown notice concerning content you have posted, we may share limited information with the complainant as required by law. If you file a counter-notice, that counter-notice (including your name and contact information) will be provided to the original complainant.</p>
+
+  <h3>3.5 Business Transfers</h3>
+  <p>If MSCLTHRU Unlimited is involved in a merger, acquisition, asset sale, or bankruptcy, your personal information may be transferred as part of that transaction. We will notify you via email or a prominent notice on the Service before your information is transferred and becomes subject to a different privacy policy.</p>
+
+  <hr>
+
+  <h2>4. Data Storage and Security</h2>
+
+  <h3>4.1 Where Your Data Is Stored</h3>
+  <p>Your data is stored on servers operated by Supabase, which uses Amazon Web Services (AWS) infrastructure located in the United States. OAuth tokens for connected platforms are stored in encrypted form in our Supabase database.</p>
+
+  <h3>4.2 Security Measures</h3>
+  <p>We implement commercially reasonable security measures to protect your personal information, including:</p>
+  <ul>
+    <li>Encryption of OAuth tokens at rest.</li>
+    <li>Row-level security (RLS) policies on all database tables to prevent unauthorized access.</li>
+    <li>Rate limiting on all API endpoints.</li>
+    <li>HTTPS encryption for all data in transit.</li>
+    <li>Authentication throttling (cooldown and lockout mechanisms) to prevent brute-force attacks.</li>
+    <li>AI kill switch capability to immediately disable all AI processing in the event of a security incident.</li>
+  </ul>
+  <p>While we take reasonable precautions, no method of transmission over the Internet or method of electronic storage is completely secure. We cannot guarantee the absolute security of your information.</p>
+
+  <h3>4.3 Data Retention</h3>
+  <p>We retain your personal information for as long as your account is active or as needed to provide you the Service. Specifically:</p>
+  <ul>
+    <li><strong>Account data</strong> is retained until you delete your account.</li>
+    <li><strong>Listing content and photos</strong> are retained for the duration of your account, plus a reasonable period after deletion for legal and dispute resolution purposes.</li>
+    <li><strong>Transaction records</strong> are retained for a minimum of seven (7) years to comply with financial record-keeping requirements.</li>
+    <li><strong>Chat messages</strong> are retained in accordance with Stream Chat's retention policies.</li>
+    <li><strong>Scout Mode scan history</strong> is retained for the duration of your account.</li>
+    <li><strong>Photo provenance records</strong> (timestamps, device IDs) are retained permanently for DMCA compliance purposes.</li>
+  </ul>
+  <p>When you delete your account, we will delete or anonymize your personal information within thirty (30) days, except for data we are required to retain by law or for legitimate business purposes as described above.</p>
+
+  <hr>
+
+  <h2>5. Your Rights and Choices</h2>
+
+  <h3>5.1 Account Information</h3>
+  <p>You may update your account information at any time through the App settings. You may update your display name, profile photo, and email address.</p>
+
+  <h3>5.2 Platform Connections</h3>
+  <p>You may connect or disconnect external selling platforms at any time through the App settings. Disconnecting a platform will delete the stored OAuth tokens and prevent further cross-posting to that platform. Listings previously posted to that platform will remain on the platform and must be managed directly through that platform.</p>
+
+  <h3>5.3 Location Data</h3>
+  <p>You may enable or disable location services at any time through your device settings. Disabling location services will prevent the App from showing you nearby ThriftWish wishes and suggesting meetup locations.</p>
+
+  <h3>5.4 Push Notifications</h3>
+  <p>You may enable or disable push notifications at any time through your device settings.</p>
+
+  <h3>5.5 Account Deletion</h3>
+  <p>You may request deletion of your account and associated data by contacting us at <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> or through the account settings in the App. Upon receiving your request, we will delete your account and personal information within thirty (30) days, subject to the retention requirements described in Section 4.3.</p>
+
+  <hr>
+
+  <h2>6. California Privacy Rights (CCPA/CPRA)</h2>
+
+  <p>If you are a California resident, you have the following rights under the California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA):</p>
+
+  <h3>6.1 Right to Know</h3>
+  <p>You have the right to request that we disclose the categories and specific pieces of personal information we have collected about you, the categories of sources from which the information was collected, the business or commercial purpose for collecting the information, and the categories of third parties with whom we share the information.</p>
+
+  <h3>6.2 Right to Delete</h3>
+  <p>You have the right to request that we delete the personal information we have collected from you, subject to certain exceptions permitted by law (for example, transaction records required for financial compliance).</p>
+
+  <h3>6.3 Right to Correct</h3>
+  <p>You have the right to request that we correct inaccurate personal information that we maintain about you.</p>
+
+  <h3>6.4 Right to Opt Out of Sale or Sharing</h3>
+  <p><strong>We do not sell your personal information.</strong> We do not share your personal information for cross-context behavioral advertising. Therefore, there is no need to opt out. However, if our practices change in the future, we will update this policy and provide an opt-out mechanism.</p>
+  <p>If you wish to exercise your "Do Not Sell or Share My Personal Information" right proactively, you may contact us at <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> to place this preference on file.</p>
+
+  <h3>6.5 Right to Non-Discrimination</h3>
+  <p>We will not discriminate against you for exercising any of your CCPA/CPRA rights. We will not deny you the Service, charge you different prices, provide a different level of quality, or suggest that you will receive a different level of service for exercising your rights.</p>
+
+  <h3>6.6 Categories of Information Collected</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Examples</th>
+        <th>Collected</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Identifiers</td><td>Name, email, device ID, IP address</td><td>Yes</td></tr>
+      <tr><td>Customer Records</td><td>Name, address, payment info (via Stripe)</td><td>Yes</td></tr>
+      <tr><td>Commercial Information</td><td>Products listed, purchasing history, transactions</td><td>Yes</td></tr>
+      <tr><td>Internet/Network Activity</td><td>App usage data, browsing history within the Service</td><td>Yes</td></tr>
+      <tr><td>Geolocation Data</td><td>Device location (with permission)</td><td>Yes</td></tr>
+      <tr><td>Sensory Data</td><td>Photos taken within the App</td><td>Yes</td></tr>
+      <tr><td>Inferences</td><td>AI-generated descriptions, price estimates, categories</td><td>Yes</td></tr>
+      <tr><td>Sensitive Personal Information</td><td>Account login credentials</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.7 How to Submit a Request</h3>
+  <p>To exercise your CCPA/CPRA rights, you may:</p>
+  <ul>
+    <li>Email us at <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> with the subject line "CCPA Request."</li>
+    <li>Use the data export or account deletion features within the App settings.</li>
+  </ul>
+  <p>We will verify your identity before processing your request. We will respond to verifiable requests within forty-five (45) days of receipt. If we require more time (up to an additional forty-five days), we will inform you of the reason and extension period in writing.</p>
+  <p>You may designate an authorized agent to make a request on your behalf. To do so, provide the agent with written permission and contact us for identity verification.</p>
+
+  <hr>
+
+  <h2>7. Other State Privacy Rights</h2>
+  <p>If you reside in a state with a comprehensive consumer privacy law (such as the Virginia Consumer Data Protection Act, Colorado Privacy Act, Connecticut Data Privacy Act, or similar legislation), you may have rights similar to those described in Section 6, including the right to access, delete, and correct your personal information, and the right to opt out of the sale of personal information or targeted advertising.</p>
+  <p>To exercise these rights, contact us at <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a>. We will respond in accordance with applicable law.</p>
+
+  <hr>
+
+  <h2>8. International Users</h2>
+  <p>The Service is operated from the United States. If you are accessing the Service from outside the United States, please be aware that your information will be transferred to, stored, and processed in the United States. By using the Service, you consent to the transfer of your information to the United States, which may have different data protection laws than your country of residence.</p>
+  <p>If you are located in the European Economic Area (EEA), United Kingdom, or Switzerland, we rely on your consent and our legitimate interests as the legal bases for processing your personal information. You have the right to withdraw your consent at any time by contacting us at <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a>.</p>
+
+  <hr>
+
+  <h2>9. Children's Privacy</h2>
+  <p>The Service is not intended for children under the age of thirteen (13). We do not knowingly collect personal information from children under 13. If we learn that we have collected personal information from a child under 13, we will take steps to delete that information promptly.</p>
+  <p>If you are a parent or guardian and believe your child under 13 has provided us with personal information, please contact us at <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> so we can take appropriate action.</p>
+  <p>Users between the ages of 13 and 17 may use the Service only with the involvement and consent of a parent or legal guardian.</p>
+
+  <hr>
+
+  <h2>10. Third-Party Links and Services</h2>
+  <p>The Service may contain links to third-party websites, services, or applications, including the external selling platforms to which you cross-post listings. This Privacy Policy does not apply to those third-party services. We encourage you to read the privacy policies of any third-party services you visit or use.</p>
+  <p>When you connect an external selling platform to your Scoutsy account, your interactions with that platform are governed by that platform's own terms of service and privacy policy. We are not responsible for the privacy practices of any third-party platform.</p>
+
+  <hr>
+
+  <h2>11. In-App Messaging and Moderation</h2>
+  <p>Messages sent through the in-app messaging system are processed by Stream Chat and are subject to automated moderation. Our moderation system automatically filters messages that contain:</p>
+  <ul>
+    <li>Phone numbers or email addresses.</li>
+    <li>Links to off-platform payment services (such as Venmo, CashApp, PayPal, or Zelle).</li>
+    <li>Links to external marketplaces.</li>
+  </ul>
+  <p>This filtering is performed to protect users from fraud and to keep transactions within the safety of the Scoutsy escrow system. Filtered messages are not delivered to the recipient. We may review flagged messages to improve our moderation systems and investigate potential fraud.</p>
+
+  <hr>
+
+  <h2>12. AI Processing Disclosure</h2>
+  <p>Certain features of the Service use artificial intelligence to process your data:</p>
+  <ul>
+    <li><strong>Listing Generation:</strong> Photos you take are sent to Google Gemini AI, which analyzes the images and generates suggested titles, descriptions, and pricing. The generated content is presented to you for review and editing before publication.</li>
+    <li><strong>Background Removal:</strong> Product photos may be sent to Google Gemini AI to produce images with transparent or clean backgrounds.</li>
+    <li><strong>Scout Mode:</strong> Photos taken in Scout Mode are sent to Google Vision API for item identification and to Google Gemini AI for price estimation and wish matching.</li>
+    <li><strong>Photo Similarity:</strong> When matching ThriftWish proposals, AI compares photos to generate a similarity score.</li>
+  </ul>
+  <p>Your photos are transmitted to Google's servers for processing and are subject to Google's data handling practices. We do not use your content to train our own AI models. The AI-generated content (titles, descriptions, price estimates) is derived from your photos and publicly available market data.</p>
+  <p>You may disable AI features by not using the Scout Mode or AI listing generation features. Core listing functionality (manual entry and cross-posting) does not require AI processing.</p>
+
+  <hr>
+
+  <h2>13. Subscription and Purchase Data</h2>
+  <p>Subscription management is handled by RevenueCat. When you subscribe to a Pro or Icon tier, the following occurs:</p>
+  <ul>
+    <li>Your subscription purchase is processed through Apple's App Store or Google Play Store.</li>
+    <li>RevenueCat receives your anonymized user ID and subscription status to manage entitlements.</li>
+    <li>We receive your subscription tier and status from RevenueCat to determine your feature access and fee rates.</li>
+    <li>We do not receive or store your App Store or Google Play payment method details.</li>
+  </ul>
+  <p>For information on how Apple or Google handle your purchase data, please refer to their respective privacy policies.</p>
+
+  <hr>
+
+  <h2>14. Cookies and Tracking Technologies</h2>
+  <p>The Scoutsy mobile application does not use cookies. The getscoutsy.com website may use cookies and similar technologies (such as web beacons and local storage) for the following purposes:</p>
+  <ul>
+    <li><strong>Essential Cookies:</strong> Required for the website to function properly, including authentication and security.</li>
+    <li><strong>Analytics:</strong> To understand website usage patterns and improve the user experience.</li>
+  </ul>
+  <p>You may control cookies through your browser settings. Disabling essential cookies may prevent you from using certain features of the Website.</p>
+
+  <hr>
+
+  <h2>15. Do Not Track Signals</h2>
+  <p>Some web browsers transmit "Do Not Track" (DNT) signals. Because there is no uniform standard for interpreting DNT signals, the Service does not currently respond to DNT signals. We will update this policy if a uniform standard is established.</p>
+
+  <hr>
+
+  <h2>16. Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time. When we make changes, we will update the "Last Updated" date at the top of this policy and, if the changes are material, we will notify you through the App or by email.</p>
+  <p>Your continued use of the Service after any changes to this Privacy Policy constitutes your acceptance of the updated policy. We encourage you to review this Privacy Policy periodically.</p>
+
+  <hr>
+
+  <h2>17. Data Breach Notification</h2>
+  <p>In the event of a data breach that compromises your personal information, we will notify affected users in accordance with applicable law. Depending on the jurisdiction:</p>
+  <ul>
+    <li>California residents will be notified in accordance with California Civil Code Section 1798.82.</li>
+    <li>Residents of other states will be notified in accordance with their state's breach notification laws.</li>
+  </ul>
+  <p>We will provide notification as promptly as possible and no later than required by applicable law, including a description of the breach, the types of information affected, and steps you can take to protect yourself.</p>
+
+  <hr>
+
+  <h2>18. Contact Us</h2>
+  <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+  <p><strong>Email:</strong> <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a></p>
+  <p><strong>Mailing Address:</strong><br>MSCLTHRU Unlimited<br>Attn: Privacy<br>getscoutsy.com</p>
+  <p>For CCPA/CPRA requests, please email <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> with the subject line "CCPA Request."</p>
+  <p>For DMCA-related inquiries, please email <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> with the subject line "DMCA."</p>
+  <p>For account deletion requests, you may use the in-app account deletion feature or email <a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a> with the subject line "Account Deletion Request."</p>
+
+  <hr>
+
+  <p><em>This Privacy Policy is effective as of March 2026.</em></p>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="./assets/icon.png" alt="Scoutsy">
+      <span>SCOUTSY</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="./privacy.html">Privacy Policy</a></li>
+      <li><a href="./terms.html">Terms of Service</a></li>
+      <li><a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 MSCLTHRU Unlimited. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

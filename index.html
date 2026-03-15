@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoutsy — Snap. List. Sell Everywhere.</title>
+  <meta name="description" content="AI-powered cross-listing for resellers. One photo, 12 platforms, zero hassle. Meet Kabi, your AI sidekick.">
+  <meta name="theme-color" content="#EEDCC5">
+  <link rel="icon" type="image/png" href="./assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --oatmeal: #EEDCC5;
+      --oatmeal-dark: #E2CDAF;
+      --plum: #3D1F3D;
+      --persimmon: #FF5C34;
+      --cta-persimmon: #D94820;
+      --jade: #4C8C6E;
+      --cool-blue: #6AAFCC;
+      --surface: #F0EDE8;
+      --white: #FFFFFF;
+      --text-muted: #6B5A5A;
+      --warm-border: #D9C9B3;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-lg: 28px;
+      --shadow-card: 0 4px 24px rgba(61, 31, 61, 0.07);
+      --shadow-hover: 0 8px 32px rgba(61, 31, 61, 0.12);
+      --max-width: 1140px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--oatmeal);
+      color: var(--plum);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    /* ── Grain texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ── Scroll animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(238, 220, 197, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+    .nav-logo span {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--plum);
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--plum);
+      font-weight: 500;
+      font-size: 0.95rem;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--persimmon) !important;
+      color: var(--white) !important;
+      opacity: 1 !important;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600 !important;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(255, 92, 52, 0.35);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--plum);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(180deg, var(--oatmeal) 0%, var(--oatmeal-dark) 100%);
+      padding: 80px 24px 100px;
+      text-align: center;
+    }
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      box-shadow: 0 12px 40px rgba(61, 31, 61, 0.15);
+      margin-bottom: 36px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    .hero h1 .highlight {
+      color: var(--persimmon);
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--persimmon);
+      color: var(--white);
+      padding: 18px 36px;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: 'Nunito Sans', sans-serif;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(255, 92, 52, 0.3);
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(255, 92, 52, 0.4);
+    }
+    .hero-cta svg { width: 22px; height: 22px; fill: var(--white); }
+    .hero-badge {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    /* ── Section common ── */
+    section {
+      padding: 80px 24px;
+    }
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--jade);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 16px;
+      letter-spacing: -0.8px;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .section-subtitle.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .text-center { text-align: center; }
+
+    /* ── How It Works ── */
+    .how-it-works {
+      background: var(--surface);
+      border-radius: 0;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .step-card {
+      background: var(--white);
+      padding: 40px 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .step-number {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 36px;
+      background: var(--persimmon);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+    .step-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      margin-top: 8px;
+      display: block;
+    }
+    .step-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    .step-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .step-connector {
+      display: none;
+    }
+
+    /* ── Features ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--surface);
+      padding: 36px 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .feature-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* ── Platforms ── */
+    .platforms-section {
+      background: var(--plum);
+      color: var(--white);
+      text-align: center;
+    }
+    .platforms-section .section-label { color: var(--cool-blue); }
+    .platforms-section .section-subtitle { color: rgba(255,255,255,0.65); }
+    .platform-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    .platform-group {
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+    }
+    .platform-group h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .platform-group .type-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .type-auto .type-badge {
+      background: var(--jade);
+      color: var(--white);
+    }
+    .type-assisted .type-badge {
+      background: var(--cool-blue);
+      color: var(--plum);
+    }
+    .platform-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .platform-list li {
+      font-size: 1rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .platform-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--persimmon);
+      flex-shrink: 0;
+    }
+    .platform-note {
+      font-size: 0.85rem;
+      opacity: 0.5;
+      font-style: italic;
+    }
+    .platform-zero-fee {
+      margin-top: 28px;
+      background: rgba(76, 140, 110, 0.15);
+      border: 1px solid rgba(76, 140, 110, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 16px 24px;
+      display: inline-block;
+    }
+    .platform-zero-fee span {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      color: var(--jade);
+      font-size: 0.95rem;
+    }
+
+    /* ── Pricing ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .price-card {
+      background: var(--surface);
+      padding: 40px 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .price-card.featured {
+      background: var(--white);
+      border: 2px solid var(--persimmon);
+      transform: scale(1.03);
+    }
+    .price-card.featured:hover {
+      transform: scale(1.03) translateY(-4px);
+    }
+    .price-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--persimmon);
+      color: var(--white);
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 6px 18px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .price-tier {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .price-amount {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 900;
+      font-size: 2.8rem;
+      letter-spacing: -1px;
+    }
+    .price-period {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .price-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .price-features li {
+      padding: 8px 0;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-bottom: 1px solid var(--warm-border);
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features .check {
+      color: var(--jade);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .price-cta {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 60px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .price-cta.primary {
+      background: var(--persimmon);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(255, 92, 52, 0.25);
+    }
+    .price-cta.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(255, 92, 52, 0.35);
+    }
+    .price-cta.secondary {
+      background: transparent;
+      color: var(--plum);
+      border: 2px solid var(--warm-border);
+    }
+    .price-cta.secondary:hover {
+      border-color: var(--plum);
+      transform: translateY(-1px);
+    }
+    .price-note {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Kabi ── */
+    .kabi-section {
+      background: var(--surface);
+      text-align: center;
+    }
+    .kabi-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .kabi-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 32px rgba(61, 31, 61, 0.12);
+      border: 4px solid var(--white);
+    }
+    .kabi-section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      margin-bottom: 16px;
+    }
+    .kabi-section p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .kabi-traits {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .kabi-trait {
+      background: var(--white);
+      padding: 10px 20px;
+      border-radius: 60px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--plum);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ── CTA bottom ── */
+    .cta-bottom {
+      text-align: center;
+      padding: 80px 24px 100px;
+      background: linear-gradient(180deg, var(--oatmeal) 0%, var(--oatmeal-dark) 100%);
+    }
+    .cta-bottom h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 16px;
+      letter-spacing: -0.8px;
+    }
+    .cta-bottom p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--plum);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 24px;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+    }
+    .footer-brand span {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.82rem;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--oatmeal);
+        padding: 16px 24px 24px;
+        border-bottom: 1px solid var(--warm-border);
+        gap: 16px;
+      }
+      .hamburger { display: flex; }
+
+      .hero { padding: 48px 20px 64px; }
+      .hero-icon { width: 88px; height: 88px; border-radius: 22px; margin-bottom: 28px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-sub { font-size: 1.05rem; }
+
+      .steps-grid { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .platform-types { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .price-card.featured { transform: none; }
+      .price-card.featured:hover { transform: translateY(-4px); }
+
+      section { padding: 56px 20px; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="./assets/icon.png" alt="Scoutsy icon">
+      <span>SCOUTSY</span>
+    </a>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="./privacy.html">Privacy</a></li>
+      <li><a href="./terms.html">Terms</a></li>
+      <li><a href="#" class="nav-cta">Get the App</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <img src="./assets/icon.png" alt="Scoutsy" class="hero-icon fade-in">
+    <h1 class="fade-in">Snap. List.<br><span class="highlight">Sell Everywhere.</span></h1>
+    <p class="hero-sub fade-in">AI-powered cross-listing for resellers. One photo, 12 platforms, zero hassle.</p>
+    <a href="#" class="hero-cta fade-in">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.89C10.1 6.87 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
+      Download on App Store
+    </a>
+    <p class="hero-badge fade-in">Free to start. No credit card required.</p>
+  </div>
+</section>
+
+<!-- ── How It Works ── -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-inner text-center">
+    <p class="section-label fade-in">How It Works</p>
+    <h2 class="section-title fade-in">Three taps to twelve platforms</h2>
+    <p class="section-subtitle center fade-in">Stop typing the same listing on every app. Let Scoutsy do the heavy lifting.</p>
+    <div class="steps-grid">
+      <div class="step-card fade-in">
+        <div class="step-number">1</div>
+        <span class="step-icon">&#128247;</span>
+        <h3>Snap a photo</h3>
+        <p>Point your camera at any item. Our AI identifies it in under a second.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">2</div>
+        <span class="step-icon">&#9997;&#65039;</span>
+        <h3>AI writes your listing</h3>
+        <p>Title, description, price estimate, and category are generated instantly. Just review and tweak.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">3</div>
+        <span class="step-icon">&#127758;</span>
+        <h3>Post to 12 platforms</h3>
+        <p>One tap publishes everywhere: eBay, Etsy, Poshmark, Mercari, TikTok Shop, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section id="features">
+  <div class="section-inner">
+    <p class="section-label fade-in">Features</p>
+    <h2 class="section-title fade-in">Everything a reseller needs</h2>
+    <p class="section-subtitle fade-in">Built by resellers, for resellers. Every feature earns its place.</p>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <span class="feature-icon">&#128270;</span>
+        <h3>Scout Mode</h3>
+        <p>Scan any item at a thrift store to instantly see resale value, recent sold prices, and open bounties on ThriftWish.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">&#127775;</span>
+        <h3>ThriftWish</h3>
+        <p>Our reverse marketplace. Buyers post what they want, you find it and get paid. Like bounty hunting for thrifters.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">&#128260;</span>
+        <h3>Auto-Delist</h3>
+        <p>When an item sells on one platform, it automatically delists from the others. No more overselling headaches.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">&#127912;</span>
+        <h3>AI Background Removal</h3>
+        <p>Clean, studio-quality product photos in one tap. No lightbox needed, no editing apps required.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">&#128230;</span>
+        <h3>Built-in Shipping</h3>
+        <p>Compare carrier rates, generate labels, and track packages without leaving the app. Powered by Shippo.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">&#128274;</span>
+        <h3>Secure Payments</h3>
+        <p>Stripe Connect escrow protects every ThriftWish transaction. Funds are held until delivery is confirmed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Platforms ── -->
+<section class="platforms-section" id="platforms">
+  <div class="section-inner text-center">
+    <p class="section-label fade-in">Platforms</p>
+    <h2 class="section-title fade-in" style="color: var(--white);">Sell on 12 platforms at once</h2>
+    <p class="section-subtitle center fade-in">7 platforms with direct API posting. 5 more with smart copy-paste assist.</p>
+    <div class="platform-types fade-in">
+      <div class="platform-group type-auto">
+        <h3>Auto-Post</h3>
+        <span class="type-badge">Direct API</span>
+        <ul class="platform-list">
+          <li>eBay</li>
+          <li>Etsy</li>
+          <li>TikTok Shop</li>
+          <li>Shopify</li>
+          <li>BigCommerce</li>
+          <li>WooCommerce</li>
+          <li>Whatnot <span class="platform-note">(BIN only)</span></li>
+        </ul>
+      </div>
+      <div class="platform-group type-assisted">
+        <h3>Assisted</h3>
+        <span class="type-badge">Smart Copy-Paste</span>
+        <ul class="platform-list">
+          <li>Poshmark</li>
+          <li>Mercari</li>
+          <li>Depop</li>
+          <li>Facebook Marketplace</li>
+          <li>OfferUp</li>
+        </ul>
+      </div>
+    </div>
+    <div class="platform-zero-fee fade-in">
+      <span>Cross-posting fee: $0. Always.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing ── -->
+<section id="pricing">
+  <div class="section-inner text-center">
+    <p class="section-label fade-in">Pricing</p>
+    <h2 class="section-title fade-in">Pick your hustle level</h2>
+    <p class="section-subtitle center fade-in">Start free. Upgrade when you're ready to go full-time.</p>
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="price-card fade-in">
+        <div class="price-tier">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">forever</div>
+        <ul class="price-features">
+          <li><span class="check">&#10003;</span>3 active listings</li>
+          <li><span class="check">&#10003;</span>3 Auto-Post platforms</li>
+          <li><span class="check">&#10003;</span>All 5 Assisted platforms</li>
+          <li><span class="check">&#10003;</span>AI listing generation</li>
+          <li><span class="check">&#10003;</span>5 Scout Mode scans/day</li>
+          <li><span class="check">&#10003;</span>ThriftWish (7% seller / 5% buyer)</li>
+        </ul>
+        <a href="#" class="price-cta secondary">Get Started Free</a>
+      </div>
+      <!-- Pro -->
+      <div class="price-card featured fade-in">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Pro</div>
+        <div class="price-amount">$13.99</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li><span class="check">&#10003;</span>Unlimited listings</li>
+          <li><span class="check">&#10003;</span>All 7 Auto-Post platforms</li>
+          <li><span class="check">&#10003;</span>All 5 Assisted + CSV Export</li>
+          <li><span class="check">&#10003;</span>Unlimited AI generation</li>
+          <li><span class="check">&#10003;</span>Unlimited Scout Mode</li>
+          <li><span class="check">&#10003;</span>ThriftWish (3.75% / 3%)</li>
+        </ul>
+        <a href="#" class="price-cta primary">Start Pro Trial</a>
+      </div>
+      <!-- Icon -->
+      <div class="price-card fade-in">
+        <div class="price-tier">Icon</div>
+        <div class="price-amount">$14.99</div>
+        <div class="price-period">per month &middot; early bird</div>
+        <ul class="price-features">
+          <li><span class="check">&#10003;</span>Everything in Pro</li>
+          <li><span class="check">&#10003;</span>0% ThriftWish fees</li>
+          <li><span class="check">&#10003;</span>Premium Kabi avatars</li>
+          <li><span class="check">&#10003;</span>Priority support</li>
+          <li><span class="check">&#10003;</span>Early access to features</li>
+          <li><span class="check">&#10003;</span>Founding Icon badge</li>
+        </ul>
+        <a href="#" class="price-cta secondary">Become an Icon</a>
+        <p class="price-note">First 500 users lock in $14.99/mo. Then $19.99/mo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Kabi ── -->
+<section class="kabi-section" id="kabi">
+  <div class="section-inner">
+    <div class="kabi-inner">
+      <img src="./assets/icon.png" alt="Kabi the Capybara" class="kabi-avatar fade-in">
+      <p class="section-label fade-in">Meet Your Sidekick</p>
+      <h2 class="fade-in">This is Kabi.</h2>
+      <p class="fade-in">
+        A chill capybara who helps you list, price, and sell. Kabi pops up with tips,
+        celebrates your sales, and keeps the vibe relaxed even when you're grinding listings at 2 AM.
+        Collect 250+ sticker expressions and premium avatars to make Kabi your own.
+      </p>
+      <div class="kabi-traits fade-in">
+        <span class="kabi-trait">&#129528; Chill vibes</span>
+        <span class="kabi-trait">&#128161; Smart tips</span>
+        <span class="kabi-trait">&#127881; Sale celebrations</span>
+        <span class="kabi-trait">&#127912; 250+ stickers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Bottom CTA ── -->
+<section class="cta-bottom">
+  <h2 class="fade-in">Ready to sell <span style="color: var(--persimmon);">everywhere</span>?</h2>
+  <p class="fade-in">Join thousands of resellers who list smarter, not harder.</p>
+  <a href="#" class="hero-cta fade-in">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:white"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.89C10.1 6.87 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
+    Download on App Store
+  </a>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="./assets/icon.png" alt="Scoutsy">
+      <span>SCOUTSY</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="./privacy.html">Privacy Policy</a></li>
+      <li><a href="./terms.html">Terms of Service</a></li>
+      <li><a href="mailto:legal@getscoutsy.com">legal@getscoutsy.com</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 MSCLTHRU Unlimited. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ── Scroll animation ── -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
